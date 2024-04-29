@@ -1,0 +1,238 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="/static/css/classifier.css?u={{ last_updated }}.css">
+	<script>
+		$SCRIPT_ROOT = "";
+		last_updated = {{ last_updated }};
+	</script>
+	<script src="/static/js/classifier.js?u={{ last_updated }}"></script>
+	<script src="/static/js/classifier_table.js?u={{ last_updated }}"></script>
+	<script src="/static/js/jquery-3.4.1.min.js"></script>
+</head>
+<header>
+	<div class="headerMain">
+		<div class="headerTooltip" id="headerTooltip"></div>
+	</div>
+</header>
+
+<body onload="startApp()">
+	<div style="display: flex; flex-direction: column;position:relative;">
+		<div class="a4">
+			<div class="pageContent">
+				<div>
+					<div class="component">
+						<! --компонент 0-->
+						<div class="rowBlock">
+							<! --№ компонента-->
+							<div class="rowNumber" onmouseenter="ShowDeleteButton()" onmouseleave="HideDeleteButton()">
+								<div class="elementNumber"id="componentNumber_00">1</div>
+								<div class="deleteButton" id="deleteButton_00">-</div>
+							</div>
+							<! --Имя компонента-->
+							<div class="rowOptionBlock" id="classifier" style="width:180px;">
+								<div class="optionControl" id="clsInputResultBlock">
+									<div class="controlInput" id="classifierInpurResult"></div>
+									<div class="okButton">
+										<div class="controlButton" onclick="HideDropdown()">ок</div>
+									</div>
+								</div>
+								<! --фильтр поиска-->
+								<div class="filterBlock">
+									<div class="scrollRow">
+										<input class="inputFilter" id="clsInput_test" onfocus="ShowDropdown()" oninput="StartInput()"></input>
+										<div class="addOption" id="addOption" onclick="addCustomOption()">
+											<div class="addOptionButton">&crarr;</div>
+										</div>
+									</div>
+								</div>
+								<! --результат поиска-->
+								<div class="dropdownBlock" id="clsDropdown" style="display: none">
+									<div class="scrollBlock">
+										<div class="scrollRow" style="display: none">
+											<input class="inputOption" id="clsOption_0" value="вариантов не найдено" readonly></input>
+										</div>
+									</div>
+								<! --справочные материалы-->
+									<div class="inputTitle" id="infoTitle" style="border-bottom: solid 1px; display: none;">
+										<div>справочные материалы</div>
+										<div class="V" onclick="infoBlock()" id="infoBlockButton">V</div>
+									</div>
+									<div class="scrollBlock" id="infoBlock" style="display:none;">
+										<div class="scrollRow" style="display: none">
+											<input class="inputOption" value="гост" readonly></input>
+										</div>
+									</div>
+										<! --фотографии-->
+									<div class="inputTitle" id="photoTitle" style="border-bottom: solid 1px;">
+										<div>фотографии</div>
+										<div class="V" onclick="photoBlock()" id="photoBlockButton">V</div>
+									</div>
+									<div id="photoBlock" style="display:none;flex-direction:column;">
+										<div class="scrollBlock">
+											<div class="scrollRow">
+												<input class="inputOption" value="photolink" readonly></input>
+												<div class="photoButton">
+													<div class="controlButton">-</div>
+												</div>
+											</div>
+										</div>
+										<div class="inputTitle">
+											<div>добавить фотографию</div>
+											<div class="photoButton">
+												<div class="controlButton">+</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<! -- значение в исходном -->
+							<div class="rowOptionBlock" style="width:80px;" id="valueBlock">
+								<div class="optionControl" id="massInputBlock" style="display:none;">
+									<div class="controlInput" style="display:flex;background-color:white;">
+										<input type="number" class="inputElement" value="0.000" step="0.01" min="0.000" max="100.000" onchange="changeMassValue()"></input>
+										<div class="unitElement" style="display:none">%</div>
+									</div>
+									<div class="toggleBlock">
+										<div class="toggle" style="background-image: url(/static/img/classifier/calcOn.png);"></div>
+									</div>
+									<div class="toggleBlock">
+										<div class="toggle" style="background-image: url(/static/img/classifier/impOff.png);"></div>
+									</div>
+									<div class="toggleBlock">
+										<div class="toggle" style="background-image: url(/static/img/classifier/accept.png);"></div>
+									</div>
+									<div class="okButton" >
+										<div class="controlButton" onclick="HideMassDropdown()">ок</div>
+									</div>
+								</div>
+
+								<div class="valueInput" id="massInputResultBlock" style="display:flex; margin-bottom:8px;">
+									<input class="inputFilter" id="massInput" onclick="ShowMassDropdown()" value="0.00 %" readonly style="text-align:center;background-color:white;"></input>
+								</div>
+
+								<div class="inputTitle" id="moreTitle" style="border-bottom: solid 1px;display:none;">
+									<div>дополнительно</div>
+									<div class="V" onclick="moreBlock()" id="moreBlockButton">V</div>
+								</div>
+
+								<div id="moreBlock" style="display:none;">
+									<div class="dropdownBlock" id="massDropdown" style="display: none">
+										<div class="scrollBlock">
+											<div class="scrollRow">
+												<input type="number" class="inputElement" value="0.00" readonly></input>
+												<input class="inputOption" id="unitOption_0" value="%" readonly></input>
+											</div>
+											<div class="scrollRow">
+												<input type="number" class="inputElement" value="0.00" readonly></input>
+												<input class="inputOption" id="unitOption_0" value="грамм" readonly></input>
+											</div>
+											<div class="scrollRow">
+												<input type="number" class="inputElement" value="0.00" readonly></input>
+												<input class="inputOption" id="unitOption_0" value="штук" readonly></input>
+											</div>
+											<div class="scrollRow">
+												<input type="number" class="inputElement" value="0.00" readonly></input>
+												<input class="inputOption" id="unitOption_0" value="штук/кг." readonly></input>
+											</div>
+											<div class="scrollRow">
+												<input type="number" class="inputElement" value="0.00" readonly></input>
+												<input class="inputOption" id="unitOption_0" value="ppm" readonly></input>
+											</div>
+										</div>
+										<div class="inputTitle">масса навески</div>
+
+										<div class="filterBlock">
+											<div class="scrollRow">
+												<input class="inputFilter" value="100" style="text-align: center;"></input>
+												<input class="inputOption" id="unitOption_0" value="грамм" readonly></input>
+												<div class="addOption" style="display:flex;">
+													<div class="addOptionButton">&crarr;</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="inputTitle">масса 1000 штук</div>
+
+										<div class="filterBlock">
+											<div class="scrollRow">
+												<input class="inputFilter" style="text-align: center;" value="100"></input>
+												<input class="inputOption" id="unitOption_0" value="грамм" readonly></input>
+												<div class="addOption" style="display:flex;">
+													<div class="addOptionButton">&crarr;</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					<! -- значения во фракциях -->
+							<div class="rowOptionBlock" style="width:80px;">
+								<div class="valueInput" style="display:flex; margin-bottom:8px;">
+									<input class="inputOption" value="0.00 %" readonly style="text-align:center;"></input>
+								</div>
+							</div>
+
+							<div class="rowOptionBlock" style="width:80px;">
+								<div class="valueInput" style="display:flex; margin-bottom:8px;">
+									<input class="inputOption" value="0.00 %" readonly style="text-align:center;"></input>
+								</div>
+							</div>
+
+							<div class="rowOptionBlock" style="width:32px; display:none">
+								<button class="settingsButton"></button>
+							</div>
+						</div>
+						<! --компонент 0-->
+					</div>
+					
+					
+					<! --пустой компонент-->
+					<div class="rowBlock" style="display:none;">
+						<div class="rowNumber">
+							<div class="elementNumber">2</div>
+							<div class="deleteButton">-</div>
+						</div>
+						<div class="rowOptionBlock" style="width:180px;">
+							<div class="filterBlock">
+								<div class="scrollRow">
+									<input class="inputFilter"></input>
+									<div class="addOption">
+										<div class="addOptionButton">&crarr;</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rowOptionBlock" style="width:80px;">
+							<div class="valueInput" style="display:flex; margin-bottom:8px;">
+								<input class="inputOption" value="0.00 %" readonly style="text-align:center;"></input>
+							</div>
+						</div>
+						<div class="rowOptionBlock" style="width:80px;">
+							<div class="valueInput" style="display:flex; margin-bottom:8px;">
+								<input class="inputOption" value="0.00 %" readonly style="text-align:center;"></input>
+							</div>
+						</div>
+						<div class="rowOptionBlock" style="width:80px;">
+							<div class="valueInput" style="display:flex; margin-bottom:8px;">
+								<input class="inputOption" value="0.00 %" readonly style="text-align:center;"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="pageBottomBlock">
+					<div class="bottomLogo">
+						<div class="bottomLogoImage"></div>
+					</div>
+					<div class="bottomLogoText">
+						<div class="editDate">предложение действительно до хх.хх.хххх </div>
+						<div>стр. 1</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

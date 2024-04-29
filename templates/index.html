@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Движение пшеницы</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" />
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script src="static/js/marker.js"></script>
+    <script src="static/js/map_func.js"></script>
+    <script src="static/js/circle.js"></script>
+    <script src="static/js/circle_new.js"></script>
+    <script src="static/js/marker_data.js"></script>
+    <script src="static/js/plines.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    <script> $SCRIPT_ROOT = "";</script>
+  </head>
+  <body>
+    
+    <button style="height:25px;width:150px" type="submit" id="submit" onclick="clear_map();">Очистить карту</button>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="read_locations_circle(list_coord_reg, list_coord_okr, mountRegion.value);">Регионы</button>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="read_locations_circle_new(list_coord_reg_new, list_coord_okr_new, mountRegion.value);">РегионыNEW</button>
+    <select class="orangeSelect" style="height:25px;width:100px" dir="rtl" id="mountRegion" onchange="map_check = 'kek', region_okrug()">
+    </select>
+    <button style="height:25px;width:170px" type="submit" id="submit" onclick="animation_run(list_coord_reg);">Регионы - анимация</button>
+    <button style="height:25px;width:170px" type="submit" id="submit" onclick="animation_stop(arr_TimerId);">Остановка анимации</button>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="read_locations_marker(list_coord_elev, '/static/img/elevator.png');">Элеваторы</button>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="read_locations_marker(list_coord_station, '/static/img/train.png');">Станции</button>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="load_array_path(list_zd_path_okrug, okrug_color_okrug);">ЖД округ</button>
+    <select class="orangeSelect" style="height:25px;width:65px" dir="rtl" id="zdOkrug" onchange="map_check = 'kek', displayPlines(zdOkrug.value)">
+    </select>
+    <button style="height:25px;width:100px" type="submit" id="submit" onclick="load_array_path(list_zd_path_region, okrug_color_region);">ЖД регион</button>
+    <select class="orangeSelect" style="height:25px;width:65px" dir="rtl" id="zdRegion" onchange="map_check = 'kek', displayPlines(zdRegion.value)">
+    </select>
+
+
+    <div id="map"></div>
+    <script>load_map();</script> 
+    <script>load_select_mount(list_mount);</script>
+    <script>load_select_zd(okrug_color_okrug,"zdOkrug");</script>
+    <script>load_select_zd(okrug_color_region,"zdRegion");</script>
+      
+   
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+  </body>
+</html>
+<!--iframe width="1240" height="900" src="https://datastudio.google.com/embed/reporting/68c05d95-3573-4415-9d93-ad141760643d/page/EgnZC" frameborder="0" style="border:0" allowfullscreen></iframe-->
+
+ 

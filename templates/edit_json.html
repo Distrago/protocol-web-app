@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Редактор Данных</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="/static/editData/css/edit_json.css?u={{ last_updated }}" />
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<script src="/static/editData/js/edit_main.js?u={{ last_updated }}"></script>
+	<script src="/static/editData/js/edit_ajax.js?u={{ last_updated }}"></script>
+	<script src="/static/TestClassifier/js/jquery-3.4.1.min.js"></script>
+	<script>
+		$SCRIPT_ROOT = "";
+		datestring = "{{ datestring }}";
+		last_updated = {{ last_updated }};
+	</script>
+</head>
+
+<header>
+	<div class="headerMain" style="height:74px">
+		<div class="headerTooltip" id="headerTooltip">
+			<div class="typeSelect" style="width: 200px;">
+				<select class="orangeSelect" style="width: -webkit-fill-available;" dir="rtl" id="FileSelect">
+				</select>
+			</div>
+			<button onclick = 'get_web_document()'>edit</button>
+			<button onclick = 'saveWebDocument()'>save</button>
+			<button class="comOfferButton" onclick="javascript:(print());" style=" background-image: url(/static/img/kpApparatus/print.png);cursor: pointer;"></button>
+		</div>
+	</div>
+</header>
+
+<body style="display: flex;" onload="startApp()">
+	<div class="page" id="mainTablesSpace">
+		<div class="table" id="mainClone" style="display: none;">
+			<div class="title" contentEditable="true"></div>
+			<div class="tableContent">
+				<div class="tableRow" style="display: none;">
+					<div class="tableCell" contentEditable="true" style="display: none;">one</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<footer></footer>
+
+</html>

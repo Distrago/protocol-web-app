@@ -1,0 +1,635 @@
+<html>
+
+<head>
+	<title>протокол</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.75">
+	<link rel="stylesheet" type="text/css" href="/static/css/protocol.css">
+	<script>
+		$SCRIPT_ROOT = "";
+	</script>
+	<script src="/static/js/protocol.js"></script>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap">
+<style>
+	body {
+		font-family: 'Ubuntu', sans-serif;
+	}
+</style>
+<header></header>
+
+<body>
+	<div class="mainBlock">
+		<div class="protocolPage">
+		
+			<! --Блок протокола -->
+			<div class="protocolSettings" id="protocolSettings" style="display: flex">
+				<div class="protocolBlock">
+					<div class="inputBlock">
+						<div class="inputRow">
+							<select class="textInput">
+								<option value="0">Протокол 01</option>
+							</select>
+							<select class="textInput">
+								<option value="0">Требование 01</option>
+							</select>
+							<div class="menuButtonBlock">
+								<button class="menuButton">
+									<<<<</button>
+							</div>
+						</div>
+							<div class="inputRow">
+							<select class="textInput">
+								<option value="0">Аппарат</option>
+							</select>
+							<select class="textInput">
+								<option value="0">Конфигурация</option>
+							</select>
+							<select class="textInput">
+								<option value="0">Программа</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class = "empty"></div>
+			<! --Блок исходного свернутый -->
+			<div class="compactFractionBlock" id="sourceBlock" style="display: flex">
+				<div class="compactInputBlock">
+					<div class="inputRow">
+						<select class="SourceLabel">
+							<option value="0">Исходный продукт</option>
+						</select>
+						<input class="valueFraction" value="xx.xxx"></input>
+					</div>
+				</div>
+				<div class="fractionEmpty"></div>
+					<div class="inputRow">
+						<input class="valueInput" value="xxx.xxx"></input>
+						<select class="unitSelect">
+							<option value="0">кг/ч</option>
+							<option value="0">т/ч</option>
+						</select>
+						<div class="menuButtonBlock">
+						<button class="menuButton" onclick="sourceBlockView()"><<<<</button>
+						</div>
+					</div>
+				</div>
+				
+			
+			
+			<! --Блок исходного развернутый -->
+			<div class="source" id="sourceBlockComponents" style="display: none">
+
+				<div class="fractionBlock">
+					<div class="inputBlock">
+
+						<div class="inputRow">
+							<select class="textInput">
+								<option value="0">Отрасль</option>
+							</select>
+
+							<select class="textInput">
+								<option value="0">Сегмент</option>
+							</select>
+							<button class="textInput">ГОСТ</button>
+
+						</div>
+
+						<div class="inputRow">
+							<select class="textInput">
+								<option value="0">Продукт</option>
+							</select>
+
+							<select class="textInput">
+								<option value="0">Назначение</option>
+							</select>
+
+						</div>
+					</div>
+
+					<div class="fractionEmpty"></div>
+					<div class="fractionInput">
+						<div class="inputBlock">
+
+							<div class="inputRowLabel">
+								<div class="InputSelectLabel">объем выборки</div>
+							</div>
+							<div class="inputRow">
+								<input class="valueInput" value="xxx.xxx"></input>
+								<select class="unitSelect">
+									<option value="0">грамм</option>
+									<option value="0">штук</option>
+								</select>
+							</div>
+						</div>
+						<button class="photoButton" onclick="photoBlockView()">
+							<div class="photoSize"></div>
+						</button>
+					</div>
+				</div>
+				<! --Блок добавления фотографий-->
+					<div class="addPhotoBlock" id="sourceFractionPhoto" style="display: none">
+						<button class="photoButton">
+							<div class="photoSize"></div>
+						</button>
+						<div class="photoLine"></div>
+						<div class="photoButton">
+							<div class="photoSize"></div>
+							<button class="deletePhotoButton">-</button>
+						</div>
+						<div class="photoButton">
+							<div class="photoSize"></div>
+							<button class="deletePhotoButton">-</button>
+						</div>
+					</div>
+				
+				<! --Блок компонентов исходного-->
+				<div class="components" id="item_source_block">
+					<div class="complexBlock" id="item_source_1">
+						<div class="fixedSize">
+							<div class="numberBlock">
+								<button class="deleteBlockButton">-</button>
+								<div class="number">01</div>
+							</div>
+							<div class="line"></div>
+						</div>
+						<div class="inputBlock">
+							<div class="inputRow">
+								<select class="textInput" onchange="classifier()">
+								<option value ="0">-</option>
+								<option value ="1" id = "classifierOption">Классификатор</option>
+								</select>
+								<div class="fixedSize">
+									<input class="valueInput"></input>
+									<select class="unitSelect">
+										<option value="0">грамм</option>
+										<option value="0">шт/100гр.</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="inputRowSlider">
+								<input type="range" min="0" max="5000" step="1" value="1000">
+								<div class="toggleBlock">
+									<input type="checkbox" class="toggle">
+									<input type="checkbox" class="toggle">
+								</div>
+							</div>
+						</div>
+						<button class="photoButton" onclick="addPhotoBlock.display=none">
+							<div class="photoSize"></div>
+						</button>
+						
+						</div>
+						
+						<! --Классификатор-->
+						<div class="classifier" >
+							<div class="classifierBlock" id="classifierBlock" style="display: none">
+								<div class="classifierInputBlock">
+									<input class="classLabel" value="Категория"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Основное зерно</option>
+											<option value="0">Сорная Примесь</option>
+											<option value="0">Зерновая Примесь</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Класс"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Трудноотделимая примесь</option>
+											<option value="0">Минеральная примесь</option>
+											<option value="0">Органическая примесь</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Наименование"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Овсюг</option>
+											<option value="0">Карлык</option>
+											<option value="0">Галька</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Описание"></input>
+									<div class="fixedSize">
+										<select class="classSelect"></select>
+									</div>
+									<div class="empty"></div>
+									<input class="classLabel" value="добавить компонент"></input>
+									<div class="fixedSize">
+										<input class="addClassInput"></input>
+										<button class="addNameButton">V</button>
+									</div>
+								</div>
+								<div class="fixedSize">
+									<div class="classifierLine"></div>
+								</div>
+								<div class="infoBlock"></div>
+								<div class="empty"></div>
+							</div>
+						</div>
+					
+					<div class="complexBlock" id="item_source_0" style="display: none">
+						<div class="fixedSize">
+							<div class="numberBlock">
+								<button class="deleteBlockButton">-</button>
+								<div class="number">00</div>
+							</div>
+							<div class="line"></div>
+						</div>
+						<div class="inputBlock">
+							<div class="inputRow">
+								<input class="textInput"></input>
+								<div class="fixedSize">
+									<input class="valueInput"></input>
+									<select class="unitSelect">
+										<option value="0">грамм</option>
+										<option value="0">шт/100гр.</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="inputRowSlider">
+								<input type="range" min="0" max="5000" step="1" value="1000">
+								<div class="toggleBlock">
+									<input type="checkbox" class="toggle">
+									<input type="checkbox" class="toggle">
+								</div>
+							</div>
+						</div>
+						<button class="photoButton" onclick="addPhotoBlock.display=none">
+							<div class="photoSize"></div>
+						</button>
+					</div>
+				</div>
+				
+			</div>
+			
+			<! --добавление компонентов исходного-->
+				<div class="controlRow" id="addComponent" style="display: none">
+					<button class="addComponent">Добавить компонент</button>
+				</div>
+			
+		<! --Сортировка-->	
+		<div class ="SortingBlock" id="Sorting" display ="flex">
+			<div class="SortingSettings">
+				<div class="inputBlock">
+					<div class="inputRow">
+						<div class="fixedSize">
+							<button class="deleteBlockButton">-</button>
+							<select class="SortingLabel">
+								<option value="0">Сортировка 01</option>
+								<option value="0">Сортировка 02</option>
+							</select>
+						</div>
+						<div class="fractionEmpty"></div>
+						<div class="fixedSize">
+							<input class="valueInput" value="xxx.xxx"></input>
+							<select class="unitSelect">
+								<option value="0">кг/ч</option>
+								<option value="0">т/ч</option>
+							</select>
+						</div>
+						<div class="menuButtonBlock">
+							<button class="menuButton" onclick="sortBlockView()"><<<<</button>
+						</div>
+					</div>
+				</div>
+					<div class="fractionLine"></div>
+				<div class="inputBlock">
+					<div class="inputRow">
+						<input class="sortingSourceText" value="исходный продукт, проход 02"></input>
+						<div class="fixedSize">
+							<button class="SourceFractions" onclick="AddSourceBlockView()">Входящие фракции</button>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+				<! --Блок входящих фракций-->
+				<div class="addSorceBlock" id="addSourceBlock" style="display: none">
+					<div class="inputRowSource">
+						<div>Сортировка 01</div>
+						<div class="sourceName">
+							<div>Проход 01</div>
+							<input type="checkbox" class="toggle"></input>
+						</div>
+						<div class="sourceName">
+							<div>Отбой 01</div>
+							<input type="checkbox" class="toggle"></input>
+						</div>
+					</div>
+					<div class="inputRowSource">
+						<div>Сортировка 02</div>
+						<div class="sourceName">
+							<div>Проход 02</div>
+							<input type="checkbox" class="toggle"></input>
+						</div>
+						<div class="sourceName">
+							<div>Отбой 02</div>
+							<input type="checkbox" class="toggle"></input>
+						</div>
+					</div>
+				</div>
+			
+			
+			
+						<! --Блок исходящих фракций-->
+			<div class="SortingComponents" id = "sortingFractionsComponents" style="display:flex">
+			<! --Блок прохода-->
+				<div class="accept" id = "acceptBlock" style="width:fit-content">
+					<div class="fractionBlock">
+						<div class="compactInputBlock">
+							<div class="inputRow">
+								<select class="FractionSelect">
+									<option value="0">Проход 01</option>
+								</select>
+							</div>
+							<div class = "fractionSettings">
+							<div class="inputRowUnits">
+								<div class="valueFractionLabel">выход%</div>
+								<div class="valueFractionLabel">чистота%</div>
+								<div class="valueFractionLabel">кг/ч</div>
+							</div>
+							<div class="inputRow">
+								<input class="valueFraction" value="xx.xxx"></input>
+								<div class="fractionEmpty"></div>
+								<input class="valueFraction" value="xx.xxx"></input>
+								<div class="fractionEmpty"></div>
+								<input class="valueFraction" value="xx.xxx"></input>
+							</div>
+							</div>
+						</div>
+						<div class="fractionEmpty" id= "acceptEmpty" style="display:none"></div>
+						<div class="fractionInput" id= "acceptInput" style="display:none">
+							<div class="inputBlock">
+
+								<div class="inputRowLabel">
+									<div class="InputSelectLabel">объем выборки</div>
+								</div>
+								<div class="inputRow">
+									<input class="valueInput" value="xxx.xxx"></input>
+									<select class="unitSelect">
+										<option value="0">грамм</option>
+										<option value="0">штук</option>
+									</select>
+								</div>
+							</div>
+							<button class="photoButton">
+								<div class="photoSize"></div>
+							</button>
+						</div>
+					</div>
+					<! --Блок добавления фотографий-->
+					<div class="addPhotoBlock">
+						<button class="photoButton">
+							<div class="photoSize"></div>
+						</button>
+						<div class="photoLine"></div>
+						<div class="photoButton">
+							<div class="photoSize"></div>
+							<button class="deletePhotoButton">-</button>
+						</div>
+						<div class="photoButton">
+							<div class="photoSize"></div>
+							<button class="deletePhotoButton">-</button>
+						</div>
+					</div>
+					<! --Блок компонентов прохода-->
+					<div class="components" id = "acceptComponents" style="display:none">
+						<div class="complexBlock">
+							<div class="fixedSize">
+								<div class="numberBlock">
+									<button class="deleteBlockButton">-</button>
+									<div class="number">01</div>
+								</div>
+								<div class="line"></div>
+							</div>
+							<div class="inputBlock">
+								<div class="inputRow">
+									<input class="textInput"></input>
+									<div class="fixedSize">
+										<input class="valueInput"></input>
+										<select class="unitSelect">
+											<option value="0">грамм</option>
+											<option value="0">шт/100гр.</option>
+										</select>
+										<div class="toggleBlock">
+											<input type="checkbox" class="toggle">
+											<input type="checkbox" class="toggle">
+										</div>
+									</div>
+								</div>
+								<div class="inputRowSlider">
+									<input type="range" min="0" max="5000" step="1" value="1000">
+								</div>
+							</div>
+							<div class="empty"></div>
+						</div>
+						
+						<! --Классификатор-->
+						<div class="classifier">
+							<div class="classifierBlock">
+								<div class="classifierInputBlock">
+									<input class="classLabel" value="Категория"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Основное зерно</option>
+											<option value="0">Сорная Примесь</option>
+											<option value="0">Зерновая Примесь</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Класс"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Трудноотделимая примесь</option>
+											<option value="0">Минеральная примесь</option>
+											<option value="0">Органическая примесь</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Наименование"></input>
+									<div class="fixedSize">
+										<select class="classSelect">
+											<option value="0">Овсюг</option>
+											<option value="0">Карлык</option>
+											<option value="0">Галька</option>
+										</select>
+									</div>
+									<input class="classLabel" value="Описание"></input>
+									<div class="fixedSize">
+										<select class="classSelect"></select>
+									</div>
+									<div class="empty"></div>
+									<input class="classLabel" value="добавить компонент"></input>
+									<div class="fixedSize">
+										<input class="addClassInput"></input>
+										<button class="addNameButton">V</button>
+									</div>
+								</div>
+								<div class="fixedSize">
+									<div class="classifierLine"></div>
+								</div>
+								<div class="infoBlock"></div>
+								<div class="empty"></div>
+							</div>
+						</div>
+						<div class="complexBlock">
+							<div class="fixedSize">
+								<div class="numberBlock">
+									<button class="deleteBlockButton">-</button>
+									<div class="number">02</div>
+								</div>
+								<div class="line"></div>
+							</div>
+							<div class="inputBlock">
+								<div class="inputRow">
+									<input class="textInput"></input>
+									<div class="fixedSize">
+										<input class="valueInput"></input>
+										<select class="unitSelect">
+											<option value="0">грамм</option>
+											<option value="0">шт/100гр.</option>
+										</select>
+										<div class="toggleBlock">
+											<input type="checkbox" class="toggle">
+											<input type="checkbox" class="toggle">
+										</div>
+									</div>
+								</div>
+								<div class="inputRowSlider">
+									<input type="range" min="0" max="5000" step="1" value="1000">
+								</div>
+							</div>
+							<div class="empty"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="fractionEmpty"></div>
+				
+				<! --Блок отбоя-->
+				<div class="reject">
+					<div class="fractionBlock" id = "rejectBlock" style="width:fit-content">
+						<div class="compactInputBlock">
+							<div class="inputRow">
+								<select class="FractionSelect">
+									<option value="0">Отбой 01</option>
+								</select>
+							</div>
+							<div class = "fractionSettings">
+							<div class="inputRowUnits">
+								<div class="valueFractionLabel">выход%</div>
+								<div class="valueFractionLabel">чистота%</div>
+								<div class="valueFractionLabel">кг/ч</div>
+							</div>
+							<div class="inputRow">
+								<input class="valueFraction" value="xx.xxx"></input>
+								<div class="fractionEmpty"></div>
+								<input class="valueFraction" value="xx.xxx"></input>
+								<div class="fractionEmpty"></div>
+								<input class="valueFraction" value="xx.xxx"></input>
+							</div>
+							</div>
+						</div>
+						<div class="fractionEmpty" id = "rejectEmpty" style="display:none"></div>
+						<div class="fractionInput" id = "rejectInput" style="display:none">
+							<div class="inputBlock">
+								<div class="inputRowLabel">
+									<div class="InputSelectLabel">объем выборки</div>
+								</div>
+								<div class="inputRow">
+									<input class="valueInput" value="xxx.xxx"></input>
+									<select class="unitSelect">
+										<option value="0">грамм</option>
+										<option value="0">штук</option>
+									</select>
+								</div>
+							</div>
+							<button class="photoButton">
+								<div class="photoSize"></div>
+							</button>
+						</div>
+					</div>
+					<! --Блок компонентов отбоя-->
+					<div class="components" id = "rejectComponents" style="display:none">
+						<div class="complexBlock">
+							<div class="fixedSize">
+								<div class="numberBlock">
+									<button class="deleteBlockButton">-</button>
+									<div class="number">01</div>
+								</div>
+								<div class="line"></div>
+							</div>
+							<div class="inputBlock">
+								<div class="inputRow">
+									<input class="textInput"></input>
+									<div class="fixedSize">
+										<input class="valueInput"></input>
+										<select class="unitSelect">
+											<option value="0">грамм</option>
+											<option value="0">шт/100гр.</option>
+										</select>
+										<div class="toggleBlock">
+											<input type="checkbox" class="toggle">
+											<input type="checkbox" class="toggle">
+										</div>
+									</div>
+								</div>
+								<div class="inputRowSlider">
+									<input type="range" min="0" max="5000" step="1" value="1000">
+								</div>
+							</div>
+							<div class="empty"></div>
+						</div>
+
+						<div class="complexBlock">
+							<div class="fixedSize">
+								<div class="numberBlock">
+									<button class="deleteBlockButton">-</button>
+									<div class="number">02</div>
+								</div>
+								<div class="line"></div>
+							</div>
+							<div class="inputBlock">
+								<div class="inputRow">
+									<input class="textInput"></input>
+									<div class="fixedSize">
+										<input class="valueInput"></input>
+										<select class="unitSelect">
+											<option value="0">грамм</option>
+											<option value="0">шт/100гр.</option>
+										</select>
+										<div class="toggleBlock">
+											<input type="checkbox" class="toggle">
+											<input type="checkbox" class="toggle">
+										</div>
+									</div>
+								</div>
+								<div class="inputRowSlider">
+									<input type="range" min="0" max="5000" step="1" value="1000">
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+		
+			<! --добавление компонентов Сортировки-->	
+			<div class="controlRow" id="addSorting" style="display: flex">
+				<button class="addComponent">Добавить Сортировку</button>
+			</div>
+		
+		
+			
+			
+
+		</div>
+	</div>
+	</div>
+</body>
+<footer></footer>
+
+</html>

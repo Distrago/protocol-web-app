@@ -1,0 +1,455 @@
+<html>
+
+<head>
+	<title>Нории 1.1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/css/elevator.css">
+
+	<script>
+		$SCRIPT_ROOT = "";
+	</script>
+	<script src="/static/js/elevator.js"></script>
+</head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap">
+
+<style>
+	body {
+		font-family: 'Ubuntu', sans-serif;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+</style>
+
+<header>
+	<div class="headerBlock">
+		<div class="logo" >
+		<img  src="/static/elevatorImg/elevatorlogo.png">
+		</div>
+	</div>
+</header>
+
+<body style="display:flex;">
+
+<div class="calculator">
+
+	<div class="inputRow"  onchange="sourceBlockView();" style="margin-bottom:20px; width: 452px;" id="typeBlock">		
+		<select class="typeSelect"  id="elevatorType">
+			<option value="1">Элеватор зерновой</option>
+			<option value="2">Конвейер цепной </option>
+			<option value="3">Конвейер скребковый</option>
+		</select>
+	</div>
+	
+
+
+<div class="mainInput" id ="mainOptions" style="margin-bottom:20px;">
+<button class="modelView" onclick="HelpSlider()" style="width:32;height:32;border-radius: 16px;background-color: lightgray;border-width: 0;outline: none; align-self: flex-start;">?</button>
+<div class="inputBlock">
+	<div class="inputRow">
+		<div class="valueTitle">Производительность</div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">т/ч</div>
+		<select class="valueSelect">
+			<option value="0">Пшеница</option>
+			<option value="1">Подсолнечник</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+<div class="inputBlock" id="elevatorHeight">
+	<div class="inputRow">
+		<div class="valueTitle">Высота элеватора</div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">м</div>
+		<select class="valueSelect">
+			<option value="0">Общая</option>
+			<option value="0">До выгрузки</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+<div class="inputBlock" id="zInputTop" style="display:none">
+	<div class="inputRow">
+		<div class="valueTitle">Длина верхнего участка</div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">м</div>
+		<select class="valueSelect">
+			<option value="0">Общая</option>
+			<option value="0">До выгрузки</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+<div class="inputBlock" id="zInputBottom" style="display:none">
+	<div class="inputRow">
+		<div class="valueTitle">Длина нижнего участка</div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">м</div>
+		<select class="valueSelect">
+			<option value="0">Общая</option>
+			<option value="0">До выгрузки</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+<div class="inputBlock" id="scraperInputLength" style="display:none">
+	<div class="inputRow">
+		<div class="valueTitle">Длина транспортера</div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">м</div>
+		<select class="valueSelect">
+			<option value="0">Общая</option>
+			<option value="0">До выгрузки</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+
+<div class="inputBlock" id="scraperInputAngle" style="display:none">
+	<div class="inputRow">
+		<div class="valueTitle">Угол подъема </div>
+		<input class="valueInput" value="6">
+		<div class="valueUnit">⁰</div>
+		<select class="valueSelect">
+			<option value="0">Угол</option>
+			<option value="0">Высота</option>
+		</select>
+	</div>
+	<div class="inputRow">
+	<input type="range"  min="0" max="100" step="0.1"> 
+	</div>
+</div>
+
+
+
+</div>
+
+
+	<div class="mainInput" id="sliderHelp" style="display:none; margin-bottom:20px;padding-bottom: 4px;">
+		<div class="inputBlock">
+		<div class="inputRow">Справка по слайдерам</div>
+		</div>
+	</div>
+	
+	
+	<div class="mainInput" style="display:none; margin-bottom:20px;" id="moreOptions">
+	<button class="modelView" onclick="HelpMoreOptions()" style="width:32;height:32;border-radius: 16px;background-color: lightgray;border-width: 0;outline: none; align-self: flex-start;">?</button>
+		<div class="inputBlock">
+			<div class="inputRow" id="mainMaterial">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Исполнение</div>
+				</div>
+                <select class="valueSelect">
+					<option value="0">Оцинковка</option>
+					<option value="0">Нержавейка</option>
+				</select>
+			</div>
+
+			<div class="inputRow" id="bucketMaterial">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Материал ковшей</div>
+				</div>
+                <select class="valueSelect">
+					<option value="0">Пластик</option>
+					<option value="0">Металл</option>
+				</select>
+			</div>
+			<div class="inputRow" id="motorManufacturer">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Производитель мотора</div>
+				</div>
+                <select class="valueSelect">
+					<option value="0">Италия</option>
+				</select>
+			</div>
+
+			
+			<div class="inputRow" id="controlBox">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Шкаф управления</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			<div class="inputRow" id="controlBoxConverter" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Шкаф управления с частотным преобразователем</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			
+			<div class="inputRow" id="topPressureSensor">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчик подпора верхний</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="bottomPressureSensor">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчик подпора нижний</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="pressureSensors" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчики подпора</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="reverse">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Устройство обратного хода</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="speedSensor">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчик скорости</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="beltSensor">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчик схода ленты</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="chainSensor" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Датчик обрыва цепи</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="sideInput" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Боковая загрузка</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="addInput" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Дополнительная загрузка</div>
+				</div>
+				<input class="valueInput" value="1">
+			</div>
+			
+			<div class="inputRow" id="addOutput" style="display:none;">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Дополнительная выгрузка</div>
+				</div>
+               <input class="valueInput" value="1">
+			</div>
+
+	<button class="more" onclick="ShowLess()">Вернуться к основным параметрам</button>
+        </div>
+</div>
+
+	<div class="mainInput" id="moreOptionsHelp" style="display:none; margin-bottom:20px;padding-bottom: 4px;">
+		<div class="inputBlock">
+		<div class="inputRow">Справка по допам</div>
+		</div>
+	</div>
+
+
+	<div class="mainInput" id="Options" style="margin-bottom:20px;">
+	<button class="modelView" onclick="HelpOptions()" style="width:32;height:32;border-radius: 16px;background-color: lightgray;border-width: 0;outline: none; align-self: flex-start;">?</button>
+		<div class="inputBlock" >
+			<div class="inputRow" id="converterBlock">
+				<div class="toggleDescription">
+					<div class="toggleLabel" style="font-size:16px">Частотный преобразователь</div>
+					<div class="toggleInfo" style="font-size:14px;color:gray;">Позволяет плавно регулировать производительность.</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="safeTransportingBlock">
+				<div class="toggleDescription" >
+					<div class="toggleLabel" style="font-size:16px">Бережная транспортировка</div>
+					<div class="toggleInfo" style="font-size:14px;color:gray;">Ограничивает скорость ленты, не допуская травмирования продукта.</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+			
+			<div class="inputRow" id="autoBlock">
+				<div class="toggleDescription" >
+					<div class="toggleLabel" style="font-size:16px">Безопасность и автоматизация</div>
+					<div class="toggleInfo" style="font-size:14px;color:gray;">Привести в соответствие требованиям Ростехнадзора, оснастив элеватор датчиками.</div>
+				</div>
+                <div class="checkBoxCell" >
+                    <label class="switch">
+                        <input type="checkbox" id="convertor" >
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+			</div>
+				<button class="more" onclick="ShowMore()">Перейти к дополнительным параметрам</button>
+        </div>
+	</div>
+
+	<div class="mainInput" id="optionsHelp" style="display:none; margin-bottom:20px;padding-bottom: 4px;">
+		<div class="inputBlock">
+		<div class="inputRow">Справка по Опциям</div>
+		</div>
+	</div>
+
+		<div class="mainInput" id="resultImage" style="display:flex; margin-bottom:20px;padding-bottom: 4px;">
+		<div class="inputBlock">
+			<div class="inputRow" style="align-items: end;">
+			<div>
+				<div class="toggleLabel" style="width:210px;font-size:16px">CSE 15 - 200 000 р.</div>
+				<div class="toggleLabel" style="width:210px;font-size:16px">9т\ч - по продукту Пшеница</div>
+				<div class="toggleLabel" style="width:210px;font-size:16px">9м - высота элеватора</div>
+			</div>
+				
+				<button class="coButton" id="backToCalculator">Коммерческое предложение</button>
+			</div>	
+			<div class="modelImage" >
+				<img  src="/static/elevatorImg/120m.png" style="height: inherit;"  id="imageModel">
+				<div id="selected3d" style="display:none;flex-direction: column;justify-content: center;">3D модель покрутить</div>
+				<div id ="maxDescription" style="display:none;flex-direction: column; justify-content: center;">Характеристики подробные</div>
+			</div>
+			<div class="inputRow">
+				<button class="modelView" style="width:140;margin-top:12px;" onclick="Show3dmodel()">3D Модель</button>
+				<button class="modelView" style="width:140;margin-top:12px;" onclick="ShowMaxDescription()">Характеристики</button>
+				<button class="modelView" style="width:140;margin-top:12px;">Скачать чертежи</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="mainInput">
+		<div class="inputBlock">
+			<div class="inputRow" style="align-items: baseline;">
+				<div class="toggleLabel" style="width:210px;font-size:16px">Подобрано 3 варианта</div>
+				<select class="valueSelect" style="width:92px;font-size:14px;">
+					<option value="0">В рублях</option>
+					<option value="0">В евро</option>
+				</select>
+				<select class="valueSelect" style="width:92px;font-size:14px;">
+					<option value="0">С НДС</option>
+					<option value="0">Без НДС</option>
+				</select>
+			</div>
+			<div class="inputRowDescription">
+				<div class="model">Модель</div>
+				
+				<div class="modelDescription">Параметры</div>
+					
+				<div class="price">Цена</div>
+			</div>
+			<div class="inputRow" style="algin-items:left;text-align:center;height:40px;background-color: darkorange;" id="modelOptimal" onclick="SelectOptimalModel()">
+				<div class="model">CSZE 15</div>
+				<div class="lineVertical"></div>
+				<div class="modelDescription">9м, 3м, 3м, 6т/ч</div>
+				<div class="lineVertical"></div>
+				<div class="price">200 000</div>
+			</div>
+			<div class="inputRow" style="algin-items:left;text-align:center;height:40px" id="modelLeft" onclick="SelectLeftModel()">
+				<div class="model">CSZE 15</div>
+				<div class="lineVertical"></div>
+				<div class="modelDescription">9м, 3м, 3м, 6т/ч</div>
+				<div class="lineVertical"></div>
+				<div class="price">200 000</div>	
+			</div>
+			<div class="inputRow" style="algin-items:left;text-align:center;height:40px" id="modelRight" onclick="SelectRightModel()">
+				<div class="model">CSZE 15</div>
+				<div class="lineVertical"></div>
+				<div class="modelDescription">9м, 3м, 3м, 6т/ч</div>
+				<div class="lineVertical"></div>
+				<div class="price">200 000</div>	
+			</div>
+		</div>
+	</div>
+	</div>
+	
+
+</body>
+<footer>
+	
+</footer>
+
+</html>

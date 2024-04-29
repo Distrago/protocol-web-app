@@ -1,0 +1,1091 @@
+<html>
+	<head>
+		<title>result</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.46">
+		<link rel="stylesheet" type="text/css" href="/static/css/result.css?u={{ last_updated }}">
+		
+		<script src="/static/js/jquery-3.4.1.min.js"></script>
+		<script src="/static/js/res.js?u={{ last_updated }}"></script>
+		<script src="/static/js/res_ajax-json.js?u={{ last_updated }}"></script>
+		
+		<script>
+			//Эта штука требуется
+			$SCRIPT_ROOT = "";
+			Version = "request";
+			last_updated = {{ last_updated }};
+		</script>
+	</head>
+	<link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap">
+	<style>
+		body {
+		font-family: 'Ubuntu', sans-serif;
+		}
+	</style>
+	<header>
+		<div class="headerMain">
+			<div class="headerTooltip" id="headerTooltip">
+				<button id="editText" class="comOfferButton" style=" background-image: url(static/img/edit.png);"></button>
+				<button class="comOfferButton" onclick="javascript:(print());" style=" background-image: url(static/img/print.png);"></button>
+			</div>
+		</div>
+	</header>
+	<body onload="page_onload()">
+		<div class="overlay_wait" id="overlay">
+			<div>
+				<li>Подождите!</li>
+			</div>
+		</div>
+		<div class = "mainBlock">
+			<div class="space"></div>
+			<div class = "a4">
+				<div class="pageContent">
+					<div class = "titleBlock">
+						<div>
+							<div class = "redLine"></div>
+						</div>	
+						<div class = "a4Title">
+							<div style="color: #4C5666;width:400px">ПРОТОКОЛ СОРТИРОВКИ</div>
+							<div class= "protocolNumber" id="protocolNumber">№ XXXXXXXXXX</div>
+						</div>
+						<div class = "titleTable" style="width:-webkit-fill-available;display:flex;flex-direction:column;justify-content:space-between;">
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Компания </div>
+								<div class="titleValue" id="companyName">XXXXXXXXXX</div>
+							</div>
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Продукт </div>
+								<div class="titleValue" id="mainProduct">XXXXXXXXXX</div>
+							</div>
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Менеджер </div>
+								<div class="titleValue" id="userManagerName">XXXXXXXXXX</div>
+							</div>
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Исполнитель </div>
+								<div class="titleValue" id="userPerformerName">XXXXXXXXXX</div>
+							</div>
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Дата </div>
+								<div class="titleValue" id="createDateProtocol">XXXXXXXXXX</div>
+							</div>
+							<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<div>Аппарат </div>
+								<div class="titleValue" id="equipmentMachine">XXXXXXXXXX</div>
+							</div>
+						</div>
+					</div>		
+					<div class = "fractionBlock">
+						<div class = "fractionColumnTitle">
+							<div class="mainValueTitleBlock">
+								<div class="fractionValueTitle" style="  border-width: 1 1 1 1;">Чистота целевого <br> компонента (ов), %</div>
+								<div class="fractionValueTitle">Доля от исходной смеси, %</div>
+								<div class="fractionValueTitle">Производительность по фракции, кг/ч</div>
+							</div>
+							<div style="margin: 24px 0px 24px 42px;font-weight: bold;color: #4C5666;font-size: 16px;">СОСТАВ ФРАКЦИЙ</div>
+							<div class="componentValues" style="margin-top: 0;" id="componentTitles">
+								<div class = "componentBlock" style="  border-width: 1 1 1 1; display: flex;">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent"  onclick="spoilerRun(componentTitles.children[0].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[1].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[2].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[3].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[4].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[5].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[6].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[7].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[8].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[9].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[10].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>
+								<div class = "componentBlock">
+									<div class = "photoFieldComponent">
+										<div class = "photoComponent" onclick="spoilerRun(componentTitles.children[11].children[0].children[0])"></div>
+									</div>
+									<div class = "componentTitle">
+										<div>ComponentName</div>
+										<div style="height:13;width:128;"></div>
+									</div>
+								</div>	
+							</div>		
+						</div>
+						<div class = "fractionColumn" id="sourceColumn" style="display:flex;">
+							<div class = "photoField">
+								<div class = "photo" onclick="spoilerRun(sourceColumn.children[0].children[0])"></div>
+							</div>
+							<div class = "fractionTitle">
+								<div class ="title" style="height:26;">fraction name</div>
+								<div class ="titleDescription" style="height:0;"></div>
+							</div>
+							<div class="mainSourceValues" id="sourceMainValues">
+								<div class = "fractionValueBlock" style="border-width: 1 1 1 0;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+									</div>	
+								</div>
+							</div>
+							<div class="componentValues" id="sourceComponentValues">
+								<div class = "componentValueBlock" style="border-width: 1 1 1 0;display: flex;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle" ></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue" style = "color:white;">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class = "fractionColumn" id="fractionColumn_1">
+							<div class = "photoField">
+								<div class = "photo" onclick="spoilerRun(fractionColumn_1.children[0].children[0])"></div>
+							</div>
+							<div class = "fractionTitle">
+								<div class ="title" style="height:26;">fraction name</div>
+								<div class ="titleDescription" style="height:0;"></div>
+							</div>
+							<div class="mainSourceValues" id="fractionMainValues_1">
+								<div class = "fractionValueBlock" style="border-width: 1 1 1 0;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+							</div>
+							<div class="componentValues" id="fractionComponentValues_1">
+								<div class = "componentValueBlock" style="border-width: 1 1 1 0;display: flex;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class = "fractionColumn" id="fractionColumn_2">
+							<div class = "photoField">
+								<div class = "photo" onclick="spoilerRun(fractionColumn_2.children[0].children[0])"></div>
+							</div>
+							<div class = "fractionTitle">
+								<div class ="title" style="height:26;">fraction name</div>
+								<div class ="titleDescription" style="height:0;"></div>
+							</div>
+							<div class="mainSourceValues" id="fractionMainValues_2">
+								<div class = "fractionValueBlock" style="border-width: 1 1 1 0;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+							</div>
+							<div class="componentValues" id="fractionComponentValues_2">
+								<div class = "componentValueBlock" style="border-width: 1 1 1 0;display: flex;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class = "fractionColumn" id="fractionColumn_3">
+							<div class = "photoField">
+								<div class = "photo" onclick="spoilerRun(fractionColumn_3.children[0].children[0])"></div>
+							</div>
+							<div class = "fractionTitle">
+								<div class ="title" style="height:26;">fraction name</div>
+								<div class ="titleDescription" style="height:0;"></div>
+							</div>
+							<div class="mainSourceValues" id="fractionMainValues_3">
+								<div class = "fractionValueBlock" style="border-width: 1 1 1 0;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+							</div>
+							
+							<div class="componentValues" id="fractionComponentValues_3">
+								<div class = "componentValueBlock" style="border-width: 1 1 1 0;display: flex;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class = "fractionColumn" id="fractionColumn_4">
+							<div class = "photoField">
+								<div class = "photo" onclick="spoilerRun(fractionColumn_4.children[0].children[0])"></div>
+							</div>
+							<div class = "fractionTitle">
+								<div class ="title" style="height:26;">fraction name</div>
+								<div class ="titleDescription" style="height:0;"></div>
+							</div>
+							<div class="mainSourceValues" id="fractionMainValues_4">
+								<div class = "fractionValueBlock" style="border-width: 1 1 1 0;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+								<div class = "fractionValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+									</div>	
+								</div>
+							</div>
+							
+							<div class="componentValues" id="fractionComponentValues_4">
+								<div class = "componentValueBlock" style="border-width: 1 1 1 0;display: flex;">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+								<div class = "componentValueBlock">
+									<div class="componentMainValue">
+										<div class="mainValue">00.000</div>
+										<div class = "acceptToggle"></div>
+									</div>	
+									<div class="componentRequestValue">
+										<div class="requestValue">00.000</div>
+										<div class = "requestToggle"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="legend">
+						<div style="display: flex;font-size: 12;font-weight: normal;width: 40mm;justify-content: space-between;">
+							<div class = "acceptToggle" style="display: flex;"></div>
+							<div> - Целевой компонент</div>
+						</div>
+						<div style="display: flex;font-size: 12;font-weight: normal;width: 40mm;justify-content: space-between;">
+							<div class = "importantToggle"></div>
+							<div> - Важный компонент</div>
+						</div>
+					</div>
+					<div style="height:-webkit-fill-available;"></div>
+					<div class="pageBottomBlock">
+						<div class="bottomLogo">
+							<div class="bottomLogoImage"></div>
+						</div>
+						<div class="bottomLogoText">
+							<div>анализная карта </div>
+							<div>стр. 1</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 5mm"></div>
+			<div class = "a4">
+				<div class = "pageContent">
+					<div class = "titleBlock">
+						<div class = "redLine"></div>
+						<div class = "a4Title">Схема сортировки</div>
+					</div>
+					<div class="sorting" style="background: lightgray;">
+						<div class="columnBlock" style="width: fit-content;border-width: 1px 1px 1px 1px;">
+							<div style="width:32px">№</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="nameField">Входящие фракции</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="capacityValue">Произв-ть лотка, т/ч</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="capacityMaxValue">Количесво лотков</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="nameField" style="width:80;">Исходящие фракции</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="capacityValue">Выход, т/ч</div>
+						</div>
+						<div class="columnBlock" style="border-width: 1px 1px 1px 0px;">
+							<div class="capacityMaxValue">Чистота, %</div>
+						</div>
+						<div class="columnBlock" style="width:-webkit-fill-available;border-width: 1 1 1 0;">
+							<div class="nameField" style="width:-webkit-fill-available;">Итоговые фракции</div>
+						</div>
+					</div>
+					<div id="sorting_diagram">
+						<div class="sorting" id ="sorting_0" style="display: none">
+							<div class="columnBlock" style="width: fit-content;border-width: 0px 1px 1px 1px;">
+								<div style="width:32px;width:32px">01</div>
+							</div>
+							<div class="columnBlock">
+								<div class="nameField" style="display: none">Исходная смесь</div>	
+							</div>
+							<div class="columnBlock">
+								<div class="capacityValue">XX.XX</div>
+							</div>
+							<div class="columnBlock">
+								<div class="capacityMaxValue">XXX.X</div>
+							</div>
+							<div class="columnBlock">
+								<div class="nameField" style="width:80;">Проход 01</div>
+								<div class="nameField" style="width:80;">Отбой 01</div>
+							</div>
+							<div class="columnBlock">
+								<div class="capacityValue">XX.XX</div>
+								<div class="capacityValue">XX.XX</div>
+							</div>
+							<div class="columnBlock">
+								<div class="capacityMaxValue">XXX.XXX</div>
+								<div class="capacityMaxValue">XXX.XXX</div>
+							</div>
+							<div class="columnBlock" style="width:-webkit-fill-available;">
+								<div class="nameField" style="width:-webkit-fill-available;">ФРАКЦИЯ 1</div>
+								<div class="nameField" style="width:-webkit-fill-available;">-</div>
+							</div>
+						</div>
+					</div>
+					<div class="schemaImage" style="display: flex"></div>
+					<div class="pageBottomBlock">
+						<div class="bottomLogo">
+							<div class="bottomLogoImage"></div>
+						</div>
+						<div class="bottomLogoText">
+							<div>анализная карта </div>
+							<div>стр. 2</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div class="overlay1" id="overlay1" onclick="spoilerClose()">
+			<div class="spoiler">
+				<img src="" id="spoilerImg">
+			</div>
+		</div>
+	</body>
+	<footer></footer>
+</html>

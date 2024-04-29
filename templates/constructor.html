@@ -1,0 +1,202 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/constructor/css/constructor.css?u={{ last_updated }}">
+		<!-- Подключаем jQuery -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="/static/constructor/js/constructor.js?u={{ last_updated }}"></script>
+		<script src="/static/constructor/js/constructor_ajax.js?u={{ last_updated }}"></script>
+		<script>
+			$SCRIPT_ROOT = "";
+			last_updated = {{ last_updated }};
+		</script>
+	</head>
+	<header>
+		<div class="headerMain">
+			<div class="headerTooltip" id="headerTooltip">		
+				<div style="display: flex;flex-direction:row;">
+					<button class="addButton" onclick="Calculator()">+</button>				
+					<div style="display:flex;flex-direction:column;margin-top: 4px;margin-right:12px;">
+						<div class="regularText">Фильтрация</div>					
+						<div style="height:fit-content">
+						<div class="rowOptionBlock" id="classifier" style="width:200px;margin-top:4px;">
+							<div class="optionControl" id="clsInputResultBlock">
+								<div class="controlInput" id="classifierInpurResult"></div>
+								<div class="okButton">
+									<div class="controlButton" onclick="HideDropdown();">ок</div>
+								</div>
+							</div>
+							<! --фильтр поиска-->
+							<div class="filterBlock">
+								<div class="scrollRow">
+									<input class="inputFilter" id="clsInput_test" onfocus="ShowDropdown()" oninput="StartInput()"></input>
+									<div class="addOption" id="addOption" >
+										<div class="addOptionButton" onclick="addCustomOption()">&crarr;</div>
+									</div>
+								</div>
+							</div>
+							<! --результат поиска-->
+							<div class="dropdownBlock" id="clsDropdown" style="display: none">
+								<div class="scrollBlock">
+									<div class="scrollRow" style="display: none">
+										<input class="inputOption" id="clsOption_0" value="вариантов не найдено" readonly></input>
+									</div>
+								</div>
+								<div style="border-radius: 4px;border-color: #d2d2d2;border-width: 1px;border-style: solid;display: flex;flex-direction: column">
+									<div style="display: flex;flex-direction: row;justify-content: space-between;width: 200px;">
+										<div>Hide</div>
+										<div class="checkboxBorder">									
+											<input type="checkbox" id="hideButton" onchange="hideProjectContent();" class="checkBox-custom"></input>
+										</div>
+									</div>
+									<div style="display: flex;flex-direction: row;justify-content: space-between;width: 200px;">
+										<div>FakeDiv</div>
+										<div class="checkboxBorder">									
+											<input type="checkbox"  id="FakeDiv" onchange="hideFakeDIV()" class="checkBox-custom"></input>
+										</div>
+									</div>
+									<div style="display: flex;flex-direction: row;justify-content: space-between;width: 200px;">
+										<div>Пустые недели</div>
+										<div class="checkboxBorder">									
+											<input type="checkbox"  id="spotWeek" onchange="hideSpotWeek()" class="checkBox-custom"></input>
+										</div>
+									</div>
+								</div>
+								
+								<!-- <button class="regularButton" id="hide button" onclick="hideProjectContent();">Hide</button> -->
+								<!-- <button class="regularButton" onclick="hideFakeDIV()" id="FakeDiv">FakeDiv</button>				 -->
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>	
+				<div style="display:none;">
+					<button class="create" onclick="showFilter()">Filter</button>
+					<select class="project_Type" id="project_Type_Filter" onchange="sortProjectByType()">
+						<option value="all">all</option>
+						<option value="apparat">apparat</option>
+						<option value="machine">machine</option>					
+						<option value="Commissioning">Commissioning</option>					
+						<option value="SPM">SPM</option>					
+					</select>
+					<select name="stageFilter" id="stageFilter" onchange="sortProjectByStageName()">					
+					</select>							
+				</div>	
+				<div class="saveLoadBlock" style="display:flex;flex-direction:row;">
+					
+				</div>			
+				<div>
+					<div class="saveLoadBlock" style="display:flex;flex-direction:row;">
+						<div style="display:flex;flex-direction:column;margin-top: 4px;margin-right:12px;width:88px;justify-content: flex-end;">
+							<button class="regularButton" onclick=" weekRangeSort()">Вычислить</button>
+						</div>
+
+					
+						<div style="display:flex;flex-direction:column;margin-top: 4px;margin-right:12px;width:180px;">
+							<div class="regularText">начало диапазона</div>
+							<div style="flex-direction:row;justify-content:space-between;">
+							<input class="weekRange" type="number" id="weekRange_start" onchange="" style="width:80px;text-align:center;">
+							<input class="weekRange" type="number" id="weekRange_startY" onchange="" min="2019" value="2021" style="width:80px;text-align:center;">		
+							</div>
+							<input style="display:none;" class="regularDate" type="date" id="startDiapozone" onchange="weeksBetween(startDiapozone.value, endDiapozone.value)">
+						</div>
+						<div style="display:flex;flex-direction:column;margin-top: 4px;margin-right:12px;width:180px;"">
+							<div class="regularText">конец диапазона</div>
+							<div style="flex-direction:row;justify-content:space-between;">
+							<input class="weekRange" type="number" id="weekRange_end" onchange="" style="width:80px;text-align:center;">
+							<input class="weekRange" type="number" id="weekRange_endY" onchange="" min="2019" value="2021" style="width:80px;text-align:center;">
+							</div>
+							<input style="display:none;" class="regularDate" type="date" id="endDiapozone" onchange="weeksBetween(startDiapozone.value, endDiapozone.value)">
+						</div>
+						<div style="display:flex;flex-direction:column;margin-top: 4px;margin-right:12px;">
+							<div class="regularText">дата планирования</div>	
+							<input class="regularDate" type="date" id="targetDiapozone" onchange="">	
+						</div>	
+						<div style="display:flex;flex-direction:column;margin-top: 4px;width:88px;">
+							<button class="regularButton" onclick="set_calendar_Data()" id="saveButton">Сохранить</button>
+							<button class="regularButton" onclick="uploadProjectDate()" id="uploadProjectDate">Выгрузить</button>
+						</div>	
+					</div>
+				</div>		
+			</div>	
+		</div>
+	</header>
+	<body onload="pageOnLoad()">
+		<div style="display: flex; flex-direction: column;position:relative;" onmousedown="HideDropdown()">
+			<div class="a4" id="a4">
+				<div class="pageContent">	
+					<div>
+						<div class="nameRow" id="weekStaticName">
+							<div></div>
+						</div>
+						<div>
+						<div class="month" id="month">
+							<div class="week" id="w0" style="display: none;">
+								<div class="weekName" style="display:none;">Неделя x</div>
+								<div class="content"></div>							
+							</div>
+						</div>
+						</div>
+					</div>
+					<div id="project_Main_Case">
+						<div class="infoBlock" id="project" style="display: none;">
+							<div class="machine">
+								<div class="nameBlock">
+									<button class="orangeButton" id="deleteButton" style="display:none;" >-</button>
+									<div class="machineName">SmartSort B 3 C+C</div>
+									<button class="orangeButton" id="moreButton" >+</button>
+								</div>
+								<div class="stages">
+									<div class="statusBlock">
+										<div class="stageName" id="stage_0"></div>
+										<div class="checkboxBorder">
+											<input type="checkbox" class="checkBox-custom"></input>
+										</div>
+									</div>
+								</div>
+								<div class="more" id="more">
+									<div class="statusBlockSub">
+										<div id="moreName"></div>
+										<div class='textarea' style="display:none" contenteditable></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>				
+					<div class="pageBottomBlock">
+						<div class="bottomLogo">
+							<div class="bottomLogoImage"></div>
+						</div>
+						<div class="bottomLogoText">				
+							<div class="left" onclick="LefttButtonWeek()"></div>
+							<div class="WeekOfYear" id="WeekOfYear">0</div>
+							<div class="right" onclick="RightButtonWeek()"></div>					
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="CalcMainWindow" id="CalcWindow">
+			<div class="calculator" style="height: fit-content;justify-content: space-between;width: fit-content;border-radius: 8px;">
+				<div style=" flex-direction: column;" id="ApparatSelector">
+					<div class="Selector" style="margin:6px;">
+						<div style="height:100px;display: flex;flex-direction: column;justify-content: center;">
+							<input class="inp" type="text" id="inputApparat"  required='' name="inputApparat" placeholder="введите аппарат"></input>
+							<input class="inp" type="date" id="inputWeek"  required='' name="inputWeek" placeholder="неделя"></input>
+							<select class="project_Type" id="project_Type" onchange="changeProgectStageName(project_Type.value)";>
+								<option value="apparat">Apparat</option>
+								<option value="machine">machine</option>					
+								<option value="Commissioning">Commissioning</option>					
+								<option value="SPM">SPM</option>
+							</select>
+						</div>
+					</div>
+					<button class="orangeButton" onclick="MenuClose();" style="width:150px; margin:6px; margin-left: 16px; cursor: pointer;">Закрыть</button>
+					<button class="orangeButton" onclick="CalculatorClose();" style="width:150px; margin:6px; margin-left: 16px; cursor: pointer;">Добавить</button>
+				</div>
+
+			</div>
+		</div>
+		<div class="CalcMainWindow" id="filterWindow">
+		</div>	
+	</body>
+</html>

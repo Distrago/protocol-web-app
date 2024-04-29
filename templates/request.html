@@ -1,0 +1,839 @@
+﻿<html>
+<head>
+    <title>Тест нория ВЕБ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css?u={{ last_updated }}">
+    <link rel="stylesheet" type="text/css" href="/static/css/req.css?u={{ last_updated }}">
+
+	<script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/req.js?u={{ last_updated }}"></script>
+	<script src="/static/js/req_ajax-json.js?u={{ last_updated }}"></script>
+    <script>
+        //Эта штука требуется
+        $SCRIPT_ROOT = "";
+    </script>
+</head>
+<header>
+    <div>
+        <div>
+            <div>
+                <img src=/static/img/logo.png height="28" width="121">
+            </div>
+            <div align="left">
+                <nobr>Международный офис
+                    <br>+7 (923) 800-08-45</nobr>
+            </div>
+            <div align="left">
+                <nobr>Российский офис
+                    <br>8 800-222-08-45</nobr>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body class = "onLoadBlock" onload="StartApp();">
+<div class="overlay_wait" id="overlay">
+	<div>
+		<li>Пожалуйса подождите загрузки данных, сервер испытывает сложности!</li>
+	</div>
+</div>
+<div class="mainBlock">
+<div class="block">
+  <div class="productTitle">
+	<div class="inputValue"> </div>	
+	<div>Ссылка на страницу поиска</div>
+  </div>
+  <div class="ProductBlock" id="compositionInput">
+     
+      <div>
+        <div class="titleRow">
+		
+          <div class="inputTitles">
+		  	<div class="productEmpty"></div>
+            <div class="empty"></div>
+            <div class="titleCategory" id="titleCategory">Продукт</div>
+			
+			<div class="titleCategory" id="titleCategory">Назначение</div>
+			 
+			<div class="InputValue">кг/ч</div>
+			
+			<div class="InputValue"></div>
+            <div class="InputValue">ID</div>
+			<div class="productBlockTitleEmpty"></div>
+			 <div class="InputValue">фото</div>
+          </div>
+        </div>
+        <div class="itemBlock">
+		 <button class="additionalOptions" id="additionalOptions" onclick="viewAddOptions()">
+			<div class = "rotateText">>>></div>
+		 </button>
+          <div class="inputBlock">
+            <div class="inputRow">
+			 
+              <div class="empty"></div>
+              <select class="selectCategory" id="compositionInput_NameProduct" onchange="fractionCompanentName(); mass_and_count();">
+
+              </select>
+			
+			  
+              <select class="selectCategory" id="compositionInput_ProductPurpose">
+
+              </select>
+			  
+				<input class="InputValue" value="1000" id="capacityInputValue_temp" onchange="SliderEdit(capacityInputValue_temp,inputSlider_temp); mass_and_count();">
+				<div class="InputValue"></div>
+			    <input class="InputValue" id="protocolID">
+				
+            </div>
+            <div class="inputRow">
+              <div class="empty"></div>
+			  	<div class="capacitySlider">
+                <input type="range" min="0" max="5000" step="1" value="1000" id="inputSlider_temp" oninput="inputEdit(capacityInputValue_temp,inputSlider_temp); mass_and_count();">
+              </div>
+			  
+			  	<div class="inputValue">
+		<div class="switch">
+			<input type="checkbox">
+				<span class="slider round"></span>
+		</div>
+	</div>
+	<div class="InputValue"></div>
+	
+	<div class="inputValue">
+		<div class="switch">
+			<input type="checkbox">
+				<span class="slider round"></span>
+		</div>
+	</div>
+	<div class="inputToggle"></div>
+            </div>
+			 </div>
+        <div class="productBlockEmpty"></div>
+          <div class="inputPhoto" id="inputPhoto">
+            <img class = "photoPlaceholder" src=/static/img/req/photo.png height="54" width="54" id="img_photo">
+            <input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg" id="input_photo">
+        </div>
+      </div>
+	  </div>
+   
+    <div class ="additional" id="additional" style="display: none">
+      <div class="titleRow">
+        <div class="inputTitles">
+          <div class="empty"></div>
+          <div class="selectCategory" id="titleCategory">Сорт</div>
+          <div class="titleType" id="titleType">Описание типа</div>
+          <div class="inputValue">тип</div>
+          <div class="inputValue">подтип</div>
+          <div class="inputValue">класс</div>
+        </div>
+      </div>
+      <div class="itemBlock">
+        <div class="inputRow">
+          <div class="empty"></div>
+          <select class="selectCategory">
+            <option value="0">Новосибирская 54</option>
+          </select>
+          <select class="selectType">
+            <option value="0">мягкая яровая краснозерная</option>
+            <option value="1">твердая яровая</option>
+            <option value="2">мягкая яровая белозерная</option>
+            <option value="3">мягкая озимая краснозерная</option>
+            <option value="4">мягкая озимая белозерная</option>
+            <option value="5">твердая озимая</option>
+            <option value="6">-</option>
+          </select>
+          <select class="inputValue">
+            <option value="0">I</option>
+            <option value="1">II</option>
+            <option value="2">III</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+            <option value="5">V</option>
+            <option value="6">VI</option>
+            <option value="7">-</option>
+          </select>
+          <select class="inputValue">
+            <option value="0">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">-</option>
+          </select>
+          <select class="inputValue">
+            <option value="0">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="4">-</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+		<div class ="empty"></div>
+        <div class="block" id="main_page">
+            <div class="blockTitle">
+			<div class="titleCategory">Исходный продукт</div>
+			
+			</div>
+            <div class="composition">
+                <div class="titleRow">
+                    <div class="itemNumberTitle">№</div>
+                    <div class="inputTitles">
+				
+                         <div class="empty"></div>
+					 
+                     
+						<div class="titleCategory" id="titleName">Наименование</div>
+                        <div class="titleCategory" id="titleClass">Описание</div>
+                    
+                        
+                     
+                        <div class="inputValue">%</div>
+						<div class="inputValueHide">штук</div>
+                        <div class="inputValue">штук/кг</div>
+                        <div class="inputValue">кг/ч</div>
+						<div class="inputToggle">г/о</div>
+						<div class = "sourceBlockEmpty"></div>
+                        <div class="inputValue" id = "titlePhoto">фото</div>
+                    </div>
+                </div>
+                <div class="itemBlock" id="mainProduct">
+                    <div class="itemNumber">
+                        <div>1</div>
+                    </div>
+                    <div class="inputBlock">
+                        <div class="inputRow">
+                            <div class="empty"></div>
+
+                            <input class="selectCategory" id="selectNameMain" value ="Выбранный продукт" readonly></input>
+                              
+                            <input class="selectCategory" id="selectDescriptionMain" value ="Целые зерна" readonly></input>
+                  
+                            <input class="inputValue" id="percent_main" value=100 onchange="SliderEdit(percent_main,inputSlaider_main); calculation_main();">
+							<input class="inputValueHide" id="count_main" readonly>
+                            <input class="inputValue" id="count_mass_main" onchange="calculation_count_mass(); calculation_main();">
+                            <input class="inputValue" id="mass_main" onchange="calculation_mass(); calculation_main();">
+							<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" checked onclick="fraction_valid_mark(); fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+                        </div>
+                        <div class="inputRow" id ="inputSliderMainRow">
+                            <input type="range" min="0" max="100" step="0.001" id="inputSlaider_main" value=100 oninput="inputEdit(percent_main,inputSlaider_main); calculation_main();">
+                        </div>
+                    </div>
+					<div class = "sourceBlockEmpty"></div>
+                    <div class="inputPhoto" id ="inputPhoto">
+					<img class = "photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+                        <input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg" >
+                    </div>
+                </div>
+                <div class = "itemWeedBlock" id="itemWeedBlock">
+                    <div class="itemBlock" id="itemBlock" style="display: none">
+                        <div class="itemNumber">
+                            <div>0</div>
+                            <button class="deleteRowButton">-</button>
+                        </div>
+                        <div class="inputBlock">
+                            <div class="inputRow">
+                                <div class="empty"></div>
+							<select class="selectCategory" id="selectNameWeed" onchange="fractionCompanentName(); mass_and_count();">
+
+                            </select>
+                    
+                            <select class="selectCategory" id="selectDescriptionWeed" onchange="fractionCompanentName(); mass_and_count();">
+							
+                            </select>
+                           
+                                <input class="inputValue" value=0>
+								<input class="inputValueHide" value=0 readonly>
+                                <input class="inputValue" value=0 onchange="calculation_count_mass(); calculation_weed();">
+                                <input class="inputValue" value=0 onchange="calculation_mass(); calculation_weed();">
+								
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_valid_mark(); fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+                            </div>
+                            <div class="inputRow">
+                                <input type="range" min="0" max="100" step="0.001" id="inputSlaider_weed" value=0>
+                            </div>
+                        </div>
+						<div class = "sourceBlockEmpty"></div>
+                        <div class="inputPhoto">
+						<img class = "photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+                            <input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg">
+                        </div>
+                    </div>
+                </div>
+                <div class="itemBlock" id="otherBlock">
+                    <div class="itemNumber">
+                        <div>2</div>
+                    </div>
+                    <div class="inputBlock">
+                        <div class="inputRow">
+                            <div class="empty"></div>
+                            <input class="selectCategory" id="selectNameOther" value ="Прочее" readonly></input>
+                    
+                            <input class="selectCategory" id="selectDescriptionOther" value ="-" readonly></input>
+                         
+                            <input class="inputValue" id="percent_other" value=0 onchange="SliderEdit(percent_other,inputSlaider_other); calculation_other();">
+							<input class="inputValueHide" id="count_other" readonly>
+                            <input class="inputValue" id="count_mass_other" onchange="calculation_count_mass(); calculation_other();">
+                            <input class="inputValue" id="mass_other" onchange="calculation_mass(); calculation_other();">
+							<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_valid_mark(); fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+                        </div>
+                        <div class="inputRow" id ="inputSliderOtherRow">
+                            <input type="range" min="0" max="100" step="0.001" value=0 id="inputSlaider_other" oninput="inputEdit(percent_other,inputSlaider_other); calculation_other();">
+                        </div>
+                    </div>
+					<div class = "sourceBlockEmpty"></div>
+                    <div class="inputPhoto" id ="inputPhotoOther">
+					<img class = "photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+                        <input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg">
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+				<div class="controls">
+			<button class="addRowButton" onclick="addRow(); fractionCompanentName(); mass_and_count();">Добавить компонент</button>
+			<button class="viewFractionButton" onclick="viewFraction()">Показать фракции</button>
+        </div>
+		
+        <div class="empty"></div>
+		
+		<div class="block" id="fraction_page" style="display: none">
+			<div class="block" id="fraction_01">
+				
+
+				<div class="blockTitle">
+					<div class="titleCategory">Фракция 01</div>
+				</div>
+				
+				<div class="composition">
+					<div class="titleRow">
+						<div class="itemFractionNumberTitle">№</div>
+						<div class="inputTitles">
+							<div class="empty"></div>
+							<div class="titleFractionCategory">Наименование</div>
+							<div class="empty"></div>
+							<div class="inputValue">%</div>
+							<div class="inputValueHide">%</div>
+							<div class="inputValueHide">штук</div>
+                        <div class="inputValue">штук/кг</div>
+							<div class="inputValue">кг/ч</div>
+							<div class="inputToggle">!</div>
+							<div class="inputToggle">г/о</div>
+					
+						
+					<div class="empty"></div>
+					
+							<div class="inputValue">выход</div>
+							
+							<div class="inputValue">чистота</div>
+							<div class="inputValue">кг/ч</div>
+							<div class="inputValue">фото</div>
+						
+						</div>
+					</div>
+					<div class="fraction">
+						<div class="fractionInput">
+							<div class="itemBlock" id="fraction_01_mainProduct">
+								<div class="itemNumber">
+									<div>1</div>
+								</div>
+								<div class="inputBlock">
+									<div class="inputRow">
+										<div class="empty"></div>
+										<input class="selectCategory" id="fraction_01_selectCategoryMain" readonly></input>
+										<div class="empty"></div>
+										<input class="inputValue" id="inFraction_01_percent_main">
+										<input class="inputValueHide" id="fraction_01_percent_main" value=100 onchange="SliderEdit(fraction_01_percent_main,fraction_01_main_slider); fraction_01_calculation(); fraction_02_calculation();">
+										<input class="inputValueHide" id="fraction_01_count_main" readonly>
+										<input class="inputValue" id="fraction_01_count_mass_main" >
+										<input class="inputValue" id="fraction_01_mass_main" >
+									</div>
+									<div class="inputRow">
+										<input type="range" min="0" max="100" step="0.001" value=100 id="fraction_01_main_slider" oninput="inputEdit(fraction_01_percent_main,fraction_01_main_slider); fraction_01_calculation(); fraction_02_calculation();">
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+							
+							</div>
+							<div class = "itemWeedBlock" id="fraction_01_itemWeedBlock">
+								<div class="itemBlock" id="fraction_01_itemBlock" style="display: none">
+									<div class="itemNumber">
+										<div>0</div>
+									</div>
+									<div class="inputBlock">
+										<div class="inputRow">
+											<div class="empty"></div>
+											<input class="selectCategory"readonly></input>
+											<div class="empty"></div>
+											<input class="inputValue" >
+											<input class="inputValueHide" value=100>
+											<input class="inputValueHide" readonly>
+											<input class="inputValue" >
+											<input class="inputValue" >
+										</div>
+										<div class="inputRow">
+											<input type="range" min="0" max="100" step="0.001" value=100>
+										</div>
+									</div>
+									<div class="inputToggle">
+										<div class="switch">
+											<input type="checkbox" onclick="fractionColorMark();">
+											<span class="slider round"></span>
+										</div>
+									</div>
+									<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+								</div>
+							</div>
+							<div class="itemBlock" id="fraction_01_otherBlock">
+								<div class="itemNumber">
+									<div>2</div>
+								</div>
+								<div class="inputBlock">
+									<div class="inputRow">
+										<div class="empty"></div>
+										<input class="selectCategory" id="fraction_01_selectCategoryOther" readonly></input>
+										<div class="empty"></div>
+										<input class="inputValue" id="inFraction_01_percent_other">
+										<input class="inputValueHide" id="fraction_01_percent_other" value=100 onchange="SliderEdit(fraction_01_percent_other,fraction_01_other_slider); fraction_01_calculation(); fraction_02_calculation();">
+										<input class="inputValueHide" id="fraction_01_count_other" readonly>
+										<input class="inputValue" id="fraction_01_count_mass_other">
+										<input class="inputValue" id="fraction_01_mass_other" >
+									</div>
+									<div class="inputRow">
+										<input type="range" min="0" max="100" step="0.001" value=100 id="fraction_01_other_slider" oninput="inputEdit(fraction_01_percent_other,fraction_01_other_slider); fraction_01_calculation(); fraction_02_calculation();">
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+						<div class="fractionInput">
+							<div class="fractionTechBlock" id="fraction_01_TechBlock">
+								<div class="inputBlock">
+									<div class="inputRow">
+										<input class="inputValue">
+										<input class="inputValue">
+										<input class="inputValue">
+										
+									</div>
+									<div class="inputRow">
+										
+										<button class="fixFraction">Зафиксировать фракцию</button>
+									</div>
+								</div>
+								<div class="inputPhoto" id="inputPhotoOther">
+									<img class="photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+									<input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg">
+								</div>
+							</div>
+							<div class="noteBlock" id="fraction_01_CommentBlock">
+								<textarea class="textInfo" placeholder="Примечания"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 00-->
+			<div id="addFractionBlock">
+				<div class="block" id="fraction_00">
+					<div style="display: flex">
+						<div class="blockTitle">Фракция 00</div>
+						
+						<button style="align-self: center; position: absolute; margin-left: 15px;"> - </button>
+						
+					</div>
+					
+					<div class="composition">
+						<div class="titleRow">
+							<div class="itemFractionNumberTitle">№</div>
+							<div class="inputTitles">
+								<div class="empty"></div>
+								<div class="titleFractionCategory">Наименование</div>
+								<div class="empty"></div>
+								<div class="inputValue">%</div>
+									<div class="inputValueHide">%</div>
+						<div class="inputValueHide">штук</div>
+                        <div class="inputValue">штук/кг</div>
+                        <div class="inputValue">кг/ч</div>
+						<div class="inputToggle">!</div>
+						<div class="inputToggle">г/о</div>
+							
+								
+								<div class="empty"></div>
+					
+							<div class="inputValue">выход</div>
+							
+							<div class="inputValue">чистота</div>
+							<div class="inputValue">кг/ч</div>
+							<div class="inputValue">фото</div>
+							</div>
+						</div>
+						<div class="fraction">
+							<div class="fractionInput">
+								<div class="itemBlock" id="fraction_00_mainProduct">
+									<div class="itemNumber">
+										<div>1</div>
+									</div>
+									<div class="inputBlock">
+										<div class="inputRow">
+											<div class="empty"></div>
+											<input class="selectCategory" readonly></input>
+											<div class="empty"></div>
+											<input class="inputValue" value=0>
+											<input class="inputValueHide" value=0>
+											<input class="inputValueHide" readonly>
+											<input class="inputValue" >
+											<input class="inputValue" >
+										</div>
+										<div class="inputRow">
+											<input type="range" min="0" max="100" step="0.001" value=0 >
+										</div>
+									</div>
+									<div class="inputToggle">
+										<div class="switch">
+											<input type="checkbox" onclick="fractionColorMark();">
+											<span class="slider round"></span>
+										</div>
+									</div>
+									<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+									
+								</div>
+								<div id="fraction_00_itemWeedBlock">
+									<div class="itemBlock" id="fraction_00_itemBlock" style="display: none">
+										<div class="itemNumber">
+											<div>0</div>
+										</div>
+										<div class="inputBlock">
+											<div class="inputRow">
+												<div class="empty"></div>
+												<input class="selectCategory" readonly></input>
+												<div class="empty"></div>
+												<input class="inputValue" value=0>
+												<input class="inputValueHide" value=0>
+												<input class="inputValueHide" readonly>
+												<input class="inputValue" >
+												<input class="inputValue" >
+											</div>
+											<div class="inputRow">
+												<input type="range" min="0" max="100" step="0.001" value=0>
+											</div>
+										</div>
+										<div class="inputToggle">
+											<div class="switch">
+												<input type="checkbox" onclick="fractionColorMark();">
+												<span class="slider round"></span>
+											</div>
+										</div>
+										<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+									</div>
+								</div>
+								<div class="itemBlock" id="fraction_00_otherBlock">
+									<div class="itemNumber">
+										<div>2</div>
+									</div>
+									<div class="inputBlock">
+										<div class="inputRow">
+											<div class="empty"></div>
+											<input class="selectCategory" readonly></input>
+											<div class="empty"></div>
+											<input class="inputValue" value=0>
+											<input class="inputValueHide" value=0>
+											<input class="inputValueHide" readonly>
+											<input class="inputValue" >
+											<input class="inputValue" >
+										</div>
+										<div class="inputRow">
+											<input type="range" min="0" max="100" step="0.001" value=0>
+										</div>
+									</div>
+									<div class="inputToggle">
+										<div class="switch">
+											<input type="checkbox" onclick="fractionColorMark();">
+											<span class="slider round"></span>
+										</div>
+									</div>	
+									<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="fractionInput">
+								<div class="fractionTechBlock" id="fraction_00_TechBlock">
+									<div class="inputBlock">
+										<div class="inputRow">
+											<input class="inputValue">
+											<input class="inputValue">
+											<input class="inputValue">
+											
+										</div>
+										<div class="inputRow">
+										
+											<button class="fixFraction">Зафиксировать фракцию</button>
+										</div>
+									</div>
+									<div class="inputPhoto" id="inputPhotoOther">
+										<img class="photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+										<input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg">
+									</div>
+								</div>
+								<div class="noteBlock" id="fraction_00_CommentBlock">
+									<textarea class="textInfo" placeholder="Примечания"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 00-->
+			<div class="block" id="fraction_02">
+				<div class="blockTitle">
+					<div class="titleCategory">Фракция 02</div>
+				</div>
+				
+				<div class="composition">
+					<div class="titleRow">
+						<div class="itemFractionNumberTitle">№</div>
+						<div class="inputTitles">
+							<div class="empty"></div>
+							<div class="titleFractionCategory">Наименование</div>
+							<div class="empty"></div>
+							<div class="inputValue">%</div>
+							<div class="inputValueHide">%</div>
+                        <div class="inputValueHide">штук</div>
+                        <div class="inputValue">штук/кг</div>
+                        <div class="inputValue">кг/ч</div>
+						<div class="inputToggle">!</div>
+						<div class="inputToggle">г/о</div>
+					
+							<div class="empty"></div>
+					
+							<div class="inputValue">выход</div>
+							
+							<div class="inputValue">чистота</div>
+							<div class="inputValue">кг/ч</div>
+							<div class="inputValue">фото</div>
+						</div>
+					</div>
+					<div class="fraction">
+						<div class="fractionInput">
+							<div class="itemBlock" id="fraction_02_mainProduct">
+								<div class="itemNumber">
+									<div>1</div>
+								</div>
+								<div class="inputBlock">
+									<div class="inputRow">
+										<div class="empty"></div>
+										<input class="selectCategory" id="fraction_02_selectCategoryMain" readonly></input>
+										<div class="empty"></div>
+										<input class="inputValue" id="inFraction_02_percent_main">
+										<input class="inputValueHide" id="fraction_02_percent_main" value=0 onchange="SliderEdit(fraction_02_percent_main,fraction_02_main_slider); fraction_02_calculation(); fraction_01_calculation();">
+										<input class="inputValueHide" id="fraction_02_count_main" readonly>
+										<input class="inputValue" id="fraction_02_count_mass_main">
+										<input class="inputValue" id="fraction_02_mass_main" >
+									</div>
+									<div class="inputRow">
+										<input type="range" min="0" max="100" step="0.001" value=0 id="fraction_02_main_slider" oninput="inputEdit(fraction_02_percent_main,fraction_02_main_slider); fraction_02_calculation(); fraction_01_calculation();">
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+							</div>
+							<div id="fraction_02_itemWeedBlock">
+								<div class="itemBlock" id="fraction_02_itemBlock" style="display: none">
+									<div class="itemNumber">
+										<div>0</div>
+									</div>
+									<div class="inputBlock">
+										<div class="inputRow">
+											<div class="empty"></div>
+											<input class="selectCategory" id="fraction_02_selectCategoryWeed" readonly></input>
+											<div class="empty"></div>
+											<input class="inputValue" id="inFraction_02_percent_weed">
+											<input class="inputValueHide" id="fraction_02_percent_weed" value=0>
+											<input class="inputValueHide" id="fraction_02_count_weed" readonly>
+											<input class="inputValue" id="fraction_02_count_mass_weed" >
+											<input class="inputValue" id="fraction_02_mass_weed" >
+										</div>
+										<div class="inputRow">
+											<input type="range" min="0" max="100" step="0.001" value=0 id="fraction_02_weed_slider">
+										</div>
+									</div>
+									<div class="inputToggle">
+										<div class="switch">
+											<input type="checkbox" onclick="fractionColorMark();">
+											<span class="slider round"></span>
+										</div>
+									</div>
+									<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+								</div>
+							</div>
+							<div class="itemBlock" id="fraction_02_otherBlock">
+								<div class="itemNumber">
+									<div>2</div>
+								</div>
+								<div class="inputBlock">
+									<div class="inputRow">
+										<div class="empty"></div>
+										<input class="selectCategory" id="fraction_02_selectCategoryOther" readonly></input>
+										<div class="empty"></div>
+										<input class="inputValue" id="inFraction_02_percent_other">
+										<input class="inputValueHide" id="fraction_02_percent_other" value=0 onchange="SliderEdit(fraction_02_percent_other,fraction_02_other_slider); fraction_02_calculation(); fraction_01_calculation();">
+										<input class="inputValueHide" id="fraction_02_count_other" readonly>
+										<input class="inputValue" id="fraction_02_count_mass_other">
+										<input class="inputValue" id="fraction_02_mass_other" >
+									</div>
+									<div class="inputRow">
+										<input type="range" min="0" max="100" step="0.001" value=0 id="fraction_02_other_slider" oninput="inputEdit(fraction_02_percent_other,fraction_02_other_slider); fraction_02_calculation(); fraction_01_calculation();">
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fractionColorMark();">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								<div class="inputToggle">
+									<div class="switch">
+										<input type="checkbox" onclick="fraction_mass_count()">
+										<span class="slider round"></span>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="fractionInput">
+							<div class="fractionTechBlock" id="fraction_02_TechBlock">
+								<div class="inputBlock">
+									<div class="inputRow">
+										<input class="inputValue">
+										<input class="inputValue">
+										<input class="inputValue">
+										
+									</div>
+									<div class="inputRow">
+										
+										<button class="fixFraction">Зафиксировать фракцию</button>
+									</div>
+								</div>
+								<div class="inputPhoto" id="inputPhotoOther">
+									<img class="photoPlaceholder" src=/static/img/req/photo.png height="54" width="54">
+									<input class="addPhoto" type="file" accept="image/x-png,image/gif,image/jpeg">
+								</div>
+							</div>
+							<div class="noteBlock" id="fraction_02_CommentBlock">
+								<textarea class="textInfo" placeholder="Примечания"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+        <div class="controls" id="fraction_controls" style="display: none">
+		
+            <button class="addRowButton" onclick="addfraction(); fractionCompanentName(); mass_and_count();">Добавить фракцию</button>
+            <button class="addRowButton" onclick="protocolSave();">Cохранить протокол</button>
+        </div>
+    </div>
+</body>
+<footer style="position: relative;">
+    <div>
+        <div>
+            <div><img src=/static/img/logo.png height="28" height="28" width="121"></div>
+            <div>
+                <nobr>Международный офис
+                    <br>+7 (923) 800-08-45</nobr>
+            </div>
+            <div>
+                <nobr>ООО «СиСорт»
+                    <br>000000, Россия, Барнул,
+                    <br>ул. Германа Титова, 7</nobr>
+            </div>
+            <div>
+                <nobr>Российский офис
+                    <br>8 800-222-08-45</nobr>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
